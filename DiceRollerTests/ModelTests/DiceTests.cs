@@ -27,7 +27,8 @@ namespace DiceRollerTests.ModelTests
         public void IsSuccessRollSuccessTest()
         {
             int isSuccess = 5;
-            bool actual = dice.IsSuccessRoll(isSuccess);
+            dice.DiceResult = isSuccess;
+            bool actual = dice.SuccessRoll;
 
             Assert.IsTrue(actual);
         }
@@ -36,7 +37,8 @@ namespace DiceRollerTests.ModelTests
         public void IsSuccessRollFailTest()
         {
             int isSuccess = 1;
-            bool actual = dice.IsSuccessRoll(isSuccess);
+            dice.DiceResult = isSuccess;
+            bool actual = dice.SuccessRoll;
 
             Assert.IsFalse(actual);
         }

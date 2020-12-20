@@ -18,7 +18,6 @@ namespace DiceRoller.Models
         private int _diceSides;
         private int _diceResult;
         private bool _isDieReRolled;
-        private bool _isSuccessRoll;
 
         public Dice()
         {
@@ -44,7 +43,7 @@ namespace DiceRoller.Models
 
         public bool SuccessRoll
         {
-            get { return _isSuccessRoll; }
+            get { return IsSuccessRoll(_diceResult); }         
         }
 
         public int Roll()
@@ -71,7 +70,7 @@ namespace DiceRoller.Models
             return reRolled;
         }
 
-        public bool IsSuccessRoll(int result)
+        private bool IsSuccessRoll(int result)
         {
             bool isSuccess = false;
             if (result >= 5)
@@ -79,7 +78,6 @@ namespace DiceRoller.Models
                 isSuccess = true;
             }
 
-            _isSuccessRoll = isSuccess;
             return isSuccess;
         }
 
