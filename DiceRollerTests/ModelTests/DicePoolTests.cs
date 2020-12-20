@@ -1,8 +1,7 @@
 ﻿using DiceRoller.Models;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using System.Text;
+
 
 namespace DiceRollerTests.ModelTests
 {
@@ -15,7 +14,7 @@ namespace DiceRollerTests.ModelTests
         public void Setup()
         {
             sixDice = 6;
-            sixDicePool = new DicePool(sixDice);
+            sixDicePool = new DicePool(sixDice);           
         }
 
         [Test]
@@ -39,9 +38,36 @@ namespace DiceRollerTests.ModelTests
         }
 
         [Test]
-        public void ReRollDicePoolWith6Test()
+        public void ReRollMissedDicePoolTest()
         {
-            Assert.Pass();
+            Dice missDice = CreateTestDice(1);
+            Dice missDice2 = CreateTestDice(4);
+
+            List<Dice> dicePool = new List<Dice> { missDice, missDice2 };
+
+            sixDicePool.ReRollMisses(dicePool);
+
+            Assert.IsTrue(missDice.IsDieReRolled && missDice2.IsDieReRolled);
+        }
+
+        [Test]
+        public void ReRollSuccessfullDicePoolTest()
+        {
+            Dice successDice = CreateTestDice(6);
+            Dice successDice2 = CreateTestDice(5);
+
+            List<Dice> dicePool = new List<Dice> { successDice, successDice2 };
+
+            sixDicePool.ReRollMisses(dicePool);
+
+            Assert.IsFalse(successDice.IsDieReRolled && successDice2.IsDieReRolled);
+        }
+
+        public Dice CreateTestDice(int diceResult)
+        {
+            Dice dice = new Dice();
+            dice.DiceResult = diceResult;
+            return dice;
         }
 
     }
