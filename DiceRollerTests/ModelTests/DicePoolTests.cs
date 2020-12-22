@@ -64,15 +64,12 @@ namespace DiceRollerTests.ModelTests
         }
 
         [Test]
-        public void GetSuccesesFromDicePoolTest()
+        public void GetHitsFromDicePoolTest()
         {
-            Dice successDice = CreateTestDice(6);
-            Dice successDice2 = CreateTestDice(5);
-            Dice successDice3 = CreateTestDice(3);
-            Dice successDice4 = CreateTestDice(1);
-            List<Dice> dicePool = new List<Dice> { successDice, successDice2, successDice3, successDice4 };
+            List<int> results = new List<int> { 1, 2, 3, 5, 6};
+            List<Dice> dicePool = CreateDicePool(results);
 
-            int actual = sixDicePool.GetSuccessesInRolledDicePool(dicePool);
+            int actual = sixDicePool.GetHitsInRolledDicePool(dicePool);
 
 
             Assert.IsTrue(actual == 2);
@@ -82,11 +79,8 @@ namespace DiceRollerTests.ModelTests
         [Test]
         public void Get1sFromDicePoolTest()
         {
-            Dice successDice = CreateTestDice(6);
-            Dice successDice2 = CreateTestDice(5);
-            Dice successDice3 = CreateTestDice(3);
-            Dice successDice4 = CreateTestDice(1);
-            List<Dice> dicePool = new List<Dice> { successDice, successDice2, successDice3, successDice4 };
+            List<int> results = new List<int> { 1, 2, 3, 5 };
+            List<Dice> dicePool = CreateDicePool(results);
 
             int actual = sixDicePool.Get1sInRolledDicePool(dicePool);
 
@@ -100,6 +94,18 @@ namespace DiceRollerTests.ModelTests
             Dice dice = new Dice();
             dice.DiceResult = diceResult;
             return dice;
+        }
+
+        private List<Dice> CreateDicePool(List<int> results)
+        {
+            List<Dice> dicePool = new List<Dice>();
+
+            foreach (int result in results)
+            {
+                dicePool.Add(CreateTestDice(result));
+            }
+
+            return dicePool;
         }
 
     }

@@ -33,7 +33,7 @@ namespace DiceRoller.Models
             return _dicePool;
         }
 
-        public int GetSuccessesInRolledDicePool(List<Dice> dicePool)
+        public int GetHitsInRolledDicePool(List<Dice> dicePool)
         {
             int successCount = 0;
 
