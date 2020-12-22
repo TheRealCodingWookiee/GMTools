@@ -10,7 +10,6 @@ namespace DiceRoller.Models
     public class DicePool
     {
         private List<Dice> _dicePool;
-        private List<int> _rolledDicePool;
         private int _diceCount;
 
         public DicePool(int diceCount)
@@ -24,31 +23,44 @@ namespace DiceRoller.Models
             get { return _dicePool; } 
         }
 
-        public List<int> RolledDicePool 
-        { 
-            get { return _rolledDicePool; }
-            set { _rolledDicePool = ReturnDiceResultsAsInt(_dicePool); }
-        }
-
-        public List<int> RollDicePool()
+        public List<Dice> RollDicePool()
         {
             foreach (Dice dice in _dicePool)
             {
                 dice.Roll();
             }
 
-            return ReturnDiceResultsAsInt(_dicePool);
+            return _dicePool;
         }
 
-        private List<int> ReturnDiceResultsAsInt(List<Dice> dicePool)
+        public int GetSuccessesInRolledDicePool(List<Dice> dicePool)
         {
-            List<int> converted = new List<int>();
+            int successCount = 0;
+
             foreach (Dice dice in dicePool)
             {
-                converted.Add(dice.DiceResult);
+                if (dice.SuccessRoll)
+                {
+                    successCount += 1;
+                }
             }
 
-            return converted;
+            return successCount;
+        }
+
+        public int Get1sInRolledDicePool(List<Dice> dicePool)
+        {
+            int missCount = 0;
+
+            foreach (Dice dice in dicePool)
+            {
+                if (dice.DiceResult == 1)
+                {
+                    missCount += 1;
+                }
+            }
+
+            return missCount;
         }
 
         public List<Dice> ReRollMisses(List<Dice> dicePool)

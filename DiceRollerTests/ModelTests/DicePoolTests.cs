@@ -63,7 +63,39 @@ namespace DiceRollerTests.ModelTests
             Assert.IsFalse(successDice.IsDieReRolled && successDice2.IsDieReRolled);
         }
 
-        public Dice CreateTestDice(int diceResult)
+        [Test]
+        public void GetSuccesesFromDicePoolTest()
+        {
+            Dice successDice = CreateTestDice(6);
+            Dice successDice2 = CreateTestDice(5);
+            Dice successDice3 = CreateTestDice(3);
+            Dice successDice4 = CreateTestDice(1);
+            List<Dice> dicePool = new List<Dice> { successDice, successDice2, successDice3, successDice4 };
+
+            int actual = sixDicePool.GetSuccessesInRolledDicePool(dicePool);
+
+
+            Assert.IsTrue(actual == 2);
+
+        }
+
+        [Test]
+        public void Get1sFromDicePoolTest()
+        {
+            Dice successDice = CreateTestDice(6);
+            Dice successDice2 = CreateTestDice(5);
+            Dice successDice3 = CreateTestDice(3);
+            Dice successDice4 = CreateTestDice(1);
+            List<Dice> dicePool = new List<Dice> { successDice, successDice2, successDice3, successDice4 };
+
+            int actual = sixDicePool.Get1sInRolledDicePool(dicePool);
+
+
+            Assert.IsTrue(actual == 1);
+
+        }
+
+        private Dice CreateTestDice(int diceResult)
         {
             Dice dice = new Dice();
             dice.DiceResult = diceResult;
