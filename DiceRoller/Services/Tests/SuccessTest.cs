@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DiceRoller.Services.Tests
 {
@@ -15,6 +14,12 @@ namespace DiceRoller.Services.Tests
 
         private int _threshold;
         private bool _isTestSuccessfull;
+        private DicePool _dicePool;
+
+        public SuccessTest(DicePool dicePool)
+        {
+            _dicePool = dicePool;
+        }
 
         public int Threshold 
         { 
@@ -25,8 +30,14 @@ namespace DiceRoller.Services.Tests
 
         public bool IsThresholdPassed(List<Dice> dicePool)
         {
+            bool passed = false;
 
-            return true;
+            if (_dicePool.GetHitsInRolledDicePool(dicePool) >= _threshold)
+            {
+                passed = true;
+            }
+
+            return passed;           
         }
 
         public bool IsCriticalGlitch()
