@@ -47,7 +47,15 @@ namespace DiceRoller.Services.Tests
 
         public bool IsGlitch()
         {
-            throw new NotImplementedException();
+            int x = DivideDicePoolByTwoAndRoundUp();
+            return true;
         }
+
+        private int DivideDicePoolByTwoAndRoundUp()
+		{
+            int dividedDicePool = 0;
+            dividedDicePool = (int) Math.Round((decimal)(_dicePool.DiceCount/2), MidpointRounding.AwayFromZero);
+            return dividedDicePool;
+		}
     }
 }

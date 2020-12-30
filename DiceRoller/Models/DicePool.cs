@@ -9,8 +9,8 @@ namespace DiceRoller.Models
 {
     public class DicePool
     {
-        private List<Dice> _dicePool;
-        private int _diceCount;
+        private readonly List<Dice> _dicePool;
+        private readonly int _diceCount;
 
         public DicePool(int diceCount)
         {
@@ -22,6 +22,11 @@ namespace DiceRoller.Models
         {
             get { return _dicePool; } 
         }
+
+        public int DiceCount
+		{
+            get { return _diceCount; }
+		}
 
         public List<Dice> RollDicePool()
         {

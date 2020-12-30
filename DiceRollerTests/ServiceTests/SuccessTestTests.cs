@@ -46,6 +46,15 @@ namespace DiceRollerTests.ServiceTests
             Assert.IsFalse(passed);
         }
 
+        [Test]
+        public void GlitchOnRolledDicePoolTest()
+		{
+            
+            successTest.IsGlitch();
+            Assert.Pass();
+
+        }
+
 
         private Dice CreateTestDice(int diceResult)
         {
