@@ -9,7 +9,7 @@ namespace DiceRoller.Models
 {
     public class DicePool
     {
-        private readonly List<Dice> _dicePool;
+        private List<Dice> _dicePool;
         private readonly int _diceCount;
 
         public DicePool(int diceCount)
@@ -18,9 +18,10 @@ namespace DiceRoller.Models
             _dicePool = CreateDicePool(_diceCount);
         }
 
-        public List<Dice> GetDicePool 
+        public List<Dice> Pool 
         {
-            get { return _dicePool; } 
+            get { return _dicePool; }
+            set { _dicePool = value; }
         }
 
         public int DiceCount
