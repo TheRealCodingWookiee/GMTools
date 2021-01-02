@@ -14,12 +14,12 @@ namespace DiceRoller.Services.Tests
         private Character _attacker;
         private Character _defender;
 
-        public bool IsCriticalGlitch()
+        public bool IsCriticalGlitch(DicePool dicePool)
         {
             throw new NotImplementedException();
         }
 
-        public bool IsGlitch()
+        public bool IsGlitch(DicePool dicePool)
         {
             throw new NotImplementedException();
         }
