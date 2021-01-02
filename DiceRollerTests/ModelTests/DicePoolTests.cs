@@ -22,7 +22,7 @@ namespace DiceRollerTests.ModelTests
         {
             int actual;            
 
-            actual = sixDicePool.GetDicePool.Count;
+            actual = sixDicePool.Pool.Count;
 
             Assert.IsTrue(actual == 6);
         }
@@ -32,7 +32,7 @@ namespace DiceRollerTests.ModelTests
         {
             sixDicePool.RollDicePool();
 
-            int actual = sixDicePool.GetDicePool.FindAll(d => d.DiceResult != 0).Count;
+            int actual = sixDicePool.Pool.FindAll(d => d.DiceResult != 0).Count;
 
             Assert.IsTrue(actual == 6);
         }
