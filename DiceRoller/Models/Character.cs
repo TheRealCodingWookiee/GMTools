@@ -32,6 +32,7 @@ namespace DiceRoller.Models
         public DicePool DicePool 
         {        
             get { return _dicePool; }
+            set { _dicePool = value; }
                    
         }
     }

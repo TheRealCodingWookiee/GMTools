@@ -19,84 +19,6 @@ namespace DiceRollerTests.ServiceTests
         }
 
         [Test]
-        public void PassThresholdTest()
-        {
-            int threshold = 3;
-            List<int> results = new List<int> { 2, 5, 6, 5, 5 };
-            List<Dice> dicePool = CreateDicePool(results);
-
-            bool passed = successTest.IsThresholdPassed(dicePool, threshold);
-
-
-            Assert.IsTrue(passed);
-        }
-
-        [Test]
-        public void FailThresholdTest()
-        {
-            int threshold = 3;
-            List<int> results = new List<int> { 2, 5, 5, 2, 3, 4 };
-            List<Dice> dicePool = CreateDicePool(results);
-
-            bool passed = successTest.IsThresholdPassed(dicePool, threshold);
-
-
-            Assert.IsFalse(passed);
-        }
-
-        [Test]
-        public void GlitchOnRolledDicePoolTest()
-		{
-            List<int> results = new List<int> { 1, 1, 1, 6 };
-            List<Dice> dicePool = CreateDicePool(results);
-            DicePool pool = new DicePool(4);
-            pool.Pool = dicePool;
-
-            bool glitched = successTest.IsGlitch(pool);
-            Assert.IsTrue(glitched);
-
-        }
-
-        [Test]
-        public void NoGlitchOnRolledDicePoolTest()
-        {
-            List<int> results = new List<int> { 1, 1, 3, 2, 4, 6 };
-            List<Dice> dicePool = CreateDicePool(results);
-            DicePool pool = new DicePool(6);
-            pool.Pool = dicePool;
-
-            bool glitched = successTest.IsGlitch(pool);
-            Assert.IsFalse(glitched);
-
-        }
-
-        [Test]
-        public void CriticalGlitchOnRolledDicePoolTest()
-        {
-            List<int> results = new List<int> { 1, 1, 1, 1, 4, 3 };
-            List<Dice> dicePool = CreateDicePool(results);
-            DicePool pool = new DicePool(6);
-            pool.Pool = dicePool;
-
-            bool criticalGlitch = successTest.IsCriticalGlitch(pool);
-
-            Assert.IsTrue(criticalGlitch);
-        }
-
-        [Test]
-        public void NoCriticalGlitchOnRolledDicePoolTest()
-        {
-            List<int> results = new List<int> { 1, 1, 1, 1, 4, 6 };
-            List<Dice> dicePool = CreateDicePool(results);
-            DicePool pool = new DicePool(6);
-            pool.Pool = dicePool;
-
-            bool criticalGlitch = successTest.IsCriticalGlitch(pool);
-
-            Assert.IsFalse(criticalGlitch);
-        }
-
-        [Test]
         public void GetSuccesTestResultCriticalGlitch()
         {
             List<int> criticalGlitch = new List<int> { 1, 1, 1, 1, 4, 3 };
@@ -107,7 +29,7 @@ namespace DiceRollerTests.ServiceTests
 
             string expected = "Critical Glitch!";
 
-            string actual = successTest.GetSuccessTestResult(pool, 3);
+            string actual = successTest.GetTestResult(pool, 3);
 
             Assert.IsTrue(expected == actual);
         }
@@ -123,7 +45,7 @@ namespace DiceRollerTests.ServiceTests
 
             string expected = "Not passed and Glitch!";
 
-            string actual = successTest.GetSuccessTestResult(pool, 3);
+            string actual = successTest.GetTestResult(pool, 3);
 
             Assert.IsTrue(expected == actual);
         }
@@ -139,7 +61,7 @@ namespace DiceRollerTests.ServiceTests
 
             string expected = "Passed with Glitch!";
 
-            string actual = successTest.GetSuccessTestResult(pool, 3);
+            string actual = successTest.GetTestResult(pool, 3);
 
             Assert.IsTrue(expected == actual);
         }
@@ -155,7 +77,7 @@ namespace DiceRollerTests.ServiceTests
 
             string expected = "Passed!";
 
-            string actual = successTest.GetSuccessTestResult(pool, 3);
+            string actual = successTest.GetTestResult(pool, 3);
 
             Assert.IsTrue(expected == actual);
         }
@@ -170,7 +92,7 @@ namespace DiceRollerTests.ServiceTests
 
             string expected = "Not passed!";
 
-            string actual = successTest.GetSuccessTestResult(pool, 3);
+            string actual = successTest.GetTestResult(pool, 3);
 
             Assert.IsTrue(expected == actual);
         }
