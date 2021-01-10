@@ -62,7 +62,7 @@
     <Compile Include="Models\Character.cs" />
     <Compile Include="Models\Dice.cs" />
     <Compile Include="Models\DicePool.cs" />
-    <Compile Include="Services\Tests\ITest.cs" />
+    <Compile Include="Services\Tests\BaseTest.cs" />
     <Compile Include="Services\Tests\OpposedTests.cs" />
     <Compile Include="Services\Tests\SuccessTest.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
